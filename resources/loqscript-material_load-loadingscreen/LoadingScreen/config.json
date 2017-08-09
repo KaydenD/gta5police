@@ -1,0 +1,42 @@
+[
+	{
+		"useBackgroundColour" : "false",
+		"backgroundColour" : "20,20,20",
+		"useBackgroundImage" : "true",
+		"backgroundImagePath" : "images/Detroit_wallpaper_2166.jpg",
+		"useTextColour" : "false",
+		"textColour" : "0,0,0",
+		"useBoldText" : "true",
+		"serverTitle" : "The Motor City Dream",
+		"playAudioInBackground" : "true",
+		"audioPath" : "audio/wiimusic.ogg",
+		"audioVolume" : "0.25"
+	},
+	{
+		"rule1" : "Do not RDM or VDM",
+		"rule2" : "A microphone is a requirement",
+		"rule3" : "Do not abuse/exploit bugs",
+		"rule4" : "Do not use cheats",
+		"rule5" : "Only Casual racism allowed",
+		"rule6" : "Do not harass others",
+		"rule7" : "Use common sense"
+	},
+	{
+		"servers1" : "Website: www.KKRP.com",
+		"servers2" : "Teamspeak: 255.255.255.255",
+		"servers3" : "Discord: https://discord.gg/ckngTrP",
+		"servers4" : "",
+		"servers5" : "",
+		"servers6" : "",
+		"servers7" : ""
+	},
+	{
+		"content1" : "Character Customization",
+		"content2" : "Purchasable & Storable Vehicles",
+		"content3" : "Whitelisted Police & EMT Force",
+		"content4" : "Multiple Jobs (mining, fishing, drugs, etc)",
+		"content5" : "Banks & ATMs",
+		"content6" : "Custom Vehicle Models",
+		"content7" : "Vehicle Trunks"
+	}
+]

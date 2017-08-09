@@ -1,0 +1,88 @@
+By 'Change This' you can do copy&paste or you can just read and copy&paste what has -- jail addon behind.
+
+Put following steps into the file: client.lua
+
+------
+STEP 1
+------
+
+Add this to line: 10
+
+-- jail addon
+local isHandCuffed = false -- Don't touch!
+-- Jail addon end
+
+------
+STEP 2
+------
+
+Add this to line: 65
+
+-- jail addon
+RegisterNetEvent('jail:teleportPlayer')
+AddEventHandler('jail:teleportPlayer', function(amount)
+	if(isHandCuffed == true) then
+		SetEntityCoords(GetPlayerPed(-1), tonumber("459.87243652344"), tonumber("-994.15130615234"), tonumber("24.914875030518"))
+		
+		TriggerEvent('chatMessage', '^4[JAIL]', {0,0,0}, "You got Arrested for ^1".. amount .." seconds!")
+		TriggerServerEvent('arrestNotify')
+		
+		Citizen.CreateThread(function()
+			while (amount > 0) do
+				Citizen.Wait(1000)
+				amount = amount - 1
+			end
+			
+			-- Remove Weapons
+			RemoveAllPedWeapons(GetPlayerPed(-1))
+			TriggerEvent('chatMessage', '^4[JAIL]', {0,0,0}, "Your Weapons got removed for being Arrest!")
+			
+			-- Arrest
+			TriggerEvent('police:getArrested', t)
+			
+		end)
+	else
+		TriggerEvent('chatMessage', source,'^4[JAIL]', {0,0,0}, "Player need to be cuffed!")
+	end
+end)
+-- Jail addon end
+
+------
+STEP 3
+------
+
+Replace this:
+
+RegisterNetEvent('police:getArrested')
+AddEventHandler('police:getArrested', function()
+	if(isCop == false) then
+		handCuffed = not handCuffed
+		if(handCuffed) then
+			TriggerEvent('chatMessage', 'SYSTEM', {255, 0, 0}, "You are now cuffed.")
+		else
+			TriggerEvent('chatMessage', 'SYSTEM', {255, 0, 0}, "Freedom !")
+		end
+	end
+end)
+
+To this:
+
+RegisterNetEvent('police:getArrested')
+AddEventHandler('police:getArrested', function()
+	if(isCop == false) then
+		handCuffed = not handCuffed
+		if(handCuffed) then
+			TriggerEvent('chatMessage', 'SYSTEM', {255, 0, 0}, "You are now cuffed.")
+			isHandCuffed = true -- jail addon
+		else
+			TriggerEvent('chatMessage', 'SYSTEM', {255, 0, 0}, "Freedom !")
+			isHandCuffed = false -- jail addon
+		end
+	end
+end)
+
+------
+STEP 4
+------
+
+Take a look in the menupolice.txt

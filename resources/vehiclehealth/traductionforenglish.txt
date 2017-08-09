@@ -1,0 +1,4 @@
+msgdamage=~r~The vehicle is too damaged.
+msgcall=~w~Press ~b~X~w~ to call a troubleshooter.
+msgbreakengine=~r~You broke your engine.
+msgsubmerssion=~r~The engine is drowned.

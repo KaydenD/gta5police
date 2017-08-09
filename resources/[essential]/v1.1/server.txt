@@ -1,0 +1,23 @@
+By 'Change This' you can do copy&paste or you can just read and copy&paste what has -- jail addon behind.
+
+Put following steps into the file: server.lua
+
+------
+STEP 1
+------
+
+Paste this into the line: 167
+
+-- jail addon
+RegisterServerEvent('jail:teleportToJail')
+AddEventHandler('jail:teleportToJail', function(t, amount)
+	TriggerClientEvent('jail:teleportPlayer', t, amount)
+end)
+-- jail addon end
+
+-----------------------------
+Thank you for using my Addon!
+-----------------------------
+If you need Help: 
+https://discord.gg/PKu5Efk
+-----------------------------

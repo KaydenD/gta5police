@@ -1,0 +1,6 @@
+Pour utilisé des charactères spécials utilise des codes spécial html
+â -> &acirc;
+à -> &agrave;
+é -> &eacute;
+ê -> &ecirc;
+è -> &egrave;

@@ -1,0 +1,160 @@
+By 'Change This' you can do copy&paste or you can just read and copy&paste what has -- jail addon behind.
+
+Put following steps into the file: menupolice.lua
+
+------
+STEP 1
+------
+
+Change this:
+
+		["Citizen"] = {
+			title = "CITIZEN INTERACTIONS",
+			name = "Citizen",
+			buttons = {
+				--{name = "ID Card", description = ''},
+				{name = "Check", description = ''},
+				{name = "(Un)Cuff", description = ''},
+				{name = "Put in vehicle", description = ''},
+				{name = "Unseat", description = ''},
+				{name = "Fines", description = ''},
+				{name = "Close Menu", description = ""},
+			}
+		},
+		
+To this:
+
+		["Citizen"] = {
+			title = "CITIZEN INTERACTIONS",
+			name = "Citizen",
+			buttons = {
+				--{name = "ID Card", description = ''},
+				{name = "Check", description = ''},
+				{name = "(Un)Cuff", description = ''},
+				{name = "Put in vehicle", description = ''},
+				{name = "Put in jail", description = ''}, -- jail addon
+				{name = "Unseat", description = ''},
+				{name = "Fines", description = ''},
+				{name = "Close Menu", description = ""},
+			}
+		},
+		
+------
+STEP 2
+------
+
+Add this after the line from step 2
+
+		-- jail addon
+		["Arrest"] = {
+			title = "ARREST TIME",
+			name = "Arrest",
+			buttons = {
+				{name = "1 Minute", description = ''},
+				{name = "2 Minutes", description = ''},
+				{name = "3 Minutes", description = ''},
+				{name = "4 Minutes", description = ''},
+				{name = "5 Minutes", description = ''},
+				{name = "6 Minutes", description = ''},
+				{name = "7 Minutes", description = ''},
+				{name = "8 Minutes", description = ''},
+				{name = "9 Minutes", description = ''},
+				{name = "10 Minutes", description = ''},
+				{name = "Close Menu", description = ""},
+			}
+		},
+		-- jail addon end
+		
+------
+STEP 3
+------
+
+Replace this:
+
+	elseif this == "Citizen" then
+		if btn == "Fines" then
+			OpenMenuPolice('Fines')
+		elseif btn == "Check" then
+			Check()
+		elseif btn == "(Un)Cuff" then
+			Cuffed()
+		elseif btn == "Put in vehicle" then
+			PutInVehicle()
+		elseif btn == "Unseat" then
+			UnseatVehicle()
+		elseif btn == "Close Menu" then
+			CloseMenuPolice()
+		end
+		
+With this:
+
+	elseif this == "Citizen" then
+		if btn == "Fines" then
+			OpenMenuPolice('Fines')
+		elseif btn == "Check" then
+			Check()
+		elseif btn == "(Un)Cuff" then
+			Cuffed()
+		elseif btn == "Put in vehicle" then
+			PutInVehicle()
+		elseif btn == "Put in jail" then -- jail addon
+			OpenMenuPolice('Arrest')
+		elseif btn == "Unseat" then
+			UnseatVehicle()
+		elseif btn == "Close Menu" then
+			CloseMenuPolice()
+		end
+		
+------
+STEP 4
+------
+
+Paste below step 3:
+
+	-- jail addon
+	elseif this == "Arrest" then
+		if btn == "1 Minute" then
+			Arrest(60)
+		elseif btn == "2 Minutes" then
+			Arrest(120)
+		elseif btn == "3 Minutes" then
+			Arrest(180)
+		elseif btn == "4 Minutes" then
+			Arrest(240)
+		elseif btn == "5 Minutes" then
+			Arrest(300)
+		elseif btn == "6 Minutes" then
+			Arrest(360)
+		elseif btn == "7 Minutes" then
+			Arrest(420)
+		elseif btn == "8 Minutes" then
+			Arrest(480)
+		elseif btn == "9 Minutes" then
+			Arrest(540)
+		elseif btn == "10 Minutes" then
+			Arrest(600)
+		elseif btn == "Close Menu" then
+			CloseMenuPolice()
+		end
+		
+------
+STEP 5
+------
+
+Add this into line: 293
+
+-- Jail addon
+function Arrest(amount)
+	t, distance = GetClosestPlayer()
+	if(distance ~= -1 and distance < 3) then
+		TriggerServerEvent("jail:teleportToJail", GetPlayerServerId(t), amount)
+	else
+		TriggerEvent('chatMessage', '^4[JAIL]', {0,0,0}, "No player near you (maybe get closer) !")
+	end
+end
+
+------
+STEP 6
+------
+
+Take a look in the 'server.txt'.
